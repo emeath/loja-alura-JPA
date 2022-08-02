@@ -3,6 +3,7 @@ package br.com.alura.loja.modelo;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
@@ -17,8 +18,12 @@ public class Produto {
     private String descricao;
     private BigDecimal preco;
     private LocalDateTime dataCadastro = LocalDateTime.now();
-    @Enumerated(EnumType.STRING)
+
+    @ManyToOne
     private Categoria categoria;
+
+    public Produto() {
+    }
 
     public Produto(String nome, String descricao, BigDecimal preco, Categoria categoria) {
         this.nome = nome;
@@ -58,4 +63,5 @@ public class Produto {
     public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
+
 }
